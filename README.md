@@ -43,6 +43,7 @@ Unzip the file to `../mvtec_anomaly_detection`.
 Download the VisA dataset from [URL](https://github.com/amazon-science/spot-diff).
 Unzip the file to `../VisA/`. Preprocess the dataset to `../VisA_pytorch/` in 1-class mode by their official splitting 
 [code](https://github.com/amazon-science/spot-diff). `../VisA_pytorch` will be like:
+
 ```
 |-- VisA_pytorch
     |-- 1cls
@@ -56,7 +57,7 @@ Unzip the file to `../VisA/`. Preprocess the dataset to `../VisA_pytorch/` in 1-
         |-- capsules
         |-- ....
 ```
- 
+
 ### Real-IAD
 Contact the authors of Real-IAD [URL](https://realiad4ad.github.io/Real-IAD/) to get the net disk link.
 
@@ -142,11 +143,11 @@ MVTec-AD
 
 #### Train:
 ```
-python INP-Former_Multi_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase train
+python INP_Former_Multi_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase train
 ```
 #### Test:
 ```
-python INP-Former_Multi_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase test
+python INP_Former_Multi_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase test
 ```
 </details>
 
@@ -157,11 +158,11 @@ VisA
 
 #### Train:
 ```
-python INP-Former_Multi_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase train
+python INP_Former_Multi_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase train
 ```
 #### Test:
 ```
-python INP-Former_Multi_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase test
+python INP_Former_Multi_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase test
 ```
 </details>
 
@@ -172,11 +173,11 @@ Real-IAD
 
 #### Train:
 ```
-python INP-Former_Multi_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase train
+python INP_Former_Multi_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase train
 ```
 #### Test:
 ```
-python INP-Former_Multi_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase test
+python INP_Former_Multi_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase test
 ```
 </details>
 
@@ -188,11 +189,11 @@ MVTec-AD
 
 #### Train:
 ```
-python INP-Former_Few_Shot.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --shot 4 --phase train
+python INP_Former_Few_Shot.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --shot 4 --phase train
 ```
 #### Test:
 ```
-python INP-Former_Few_Shot.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --shot 4 --phase test
+python INP_Former_Few_Shot.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --shot 4 --phase test
 ```
 </details>
 
@@ -203,11 +204,11 @@ VisA
 
 #### Train:
 ```
-python INP-Former_Few_Shot.py --dataset VisA --data_path ../VisA_pytorch/1cls --shot 4 --phase train
+python INP_Former_Few_Shot.py --dataset VisA --data_path ../VisA_pytorch/1cls --shot 4 --phase train
 ```
 #### Test:
 ```
-python INP-Former_Few_Shot.py --dataset VisA --data_path ../VisA_pytorch/1cls --shot 4 --phase test
+python INP_Former_Few_Shot.py --dataset VisA --data_path ../VisA_pytorch/1cls --shot 4 --phase test
 ```
 </details>
 
@@ -218,11 +219,11 @@ Real-IAD
 
 #### Train:
 ```
-python INP-Former_Few_Shot.py --dataset Real-IAD --data_path ../Real-IAD --shot 4 --phase train
+python INP_Former_Few_Shot.py --dataset Real-IAD --data_path ../Real-IAD --shot 4 --phase train
 ```
 #### Test:
 ```
-python INP-Former_Few_Shot.py --dataset Real-IAD --data_path ../Real-IAD --shot 4 --phase test
+python INP_Former_Few_Shot.py --dataset Real-IAD --data_path ../Real-IAD --shot 4 --phase test
 ```
 </details>
 
@@ -235,11 +236,11 @@ MVTec-AD
 
 #### Train:
 ```
-python INP-Former_Single_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase train
+python INP_Former_Single_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase train
 ```
 #### Test:
 ```
-python INP-Former_Single_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase test
+python INP_Former_Single_Class.py --dataset MVTec-AD --data_path ../mvtec_anomaly_detection --phase test
 ```
 </details>
 
@@ -250,11 +251,11 @@ VisA
 
 #### Train:
 ```
-python INP-Former_Single_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase train
+python INP_Former_Single_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase train
 ```
 #### Test:
 ```
-python INP-Former_Single_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase test
+python INP_Former_Single_Class.py --dataset VisA --data_path ../VisA_pytorch/1cls --phase test
 ```
 </details>
 
@@ -265,11 +266,11 @@ Real-IAD
 
 #### Train:
 ```
-python INP-Former_Single_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase train
+python INP_Former_Single_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase train
 ```
 #### Test:
 ```
-python INP-Former_Single_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase test
+python INP_Former_Single_Class.py --dataset Real-IAD --data_path ../Real-IAD --phase test
 ```
 </details>
 
@@ -281,7 +282,7 @@ Source dataset: Real-IAD Target dataset: MVTec-AD
 </summary>
 
 ```
-python INP-Former_Zero_Shot.py --source_dataset Real-IAD --dataset MVTec-AD --data_path ../mvtec_anomaly_detection
+python INP_Former_Zero_Shot.py --source_dataset Real-IAD --dataset MVTec-AD --data_path ../mvtec_anomaly_detection
 ```
 </details>
 
@@ -291,7 +292,7 @@ Source dataset: VisA Target dataset: MVTec-AD
 </summary>
 
 ```
-python INP-Former_Zero_Shot.py --source_dataset VisA --dataset MVTec-AD --data_path ../mvtec_anomaly_detection
+python INP_Former_Zero_Shot.py --source_dataset VisA --dataset MVTec-AD --data_path ../mvtec_anomaly_detection
 ```
 </details>
 
@@ -303,11 +304,11 @@ MVTec-AD+VisA+Real-IAD
 
 #### Train:
 ```
-python INP-Former_Super_Multi_Class.py --mvtec_data_path ../mvtec_anomaly_detection --visa_data_path ../VisA_pytorch/1cls --real_iad_data_path ../Real-IAD --phase train 
+python INP_Former_Super_Multi_Class.py --mvtec_data_path ../mvtec_anomaly_detection --visa_data_path ../VisA_pytorch/1cls --real_iad_data_path ../Real-IAD --phase train 
 ```
 #### Test:
 ```
-python INP-Former_Super_Multi_Class.py --mvtec_data_path ../mvtec_anomaly_detection --visa_data_path ../VisA_pytorch/1cls --real_iad_data_path ../Real-IAD --phase test 
+python INP_Former_Super_Multi_Class.py --mvtec_data_path ../mvtec_anomaly_detection --visa_data_path ../VisA_pytorch/1cls --real_iad_data_path ../Real-IAD --phase test 
 ```
 </details>
 
