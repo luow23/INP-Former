@@ -18,6 +18,50 @@ import math
 from tqdm import tqdm
 from aug_funcs import rot_img, translation_img, hflip_img, grey_img, rot90_img
 import torch.backends.cudnn as cudnn
+from adeval import  EvalAccumulatorCuda
+
+
+def ader_evaluator(pr_px, pr_sp, gt_px, gt_sp, use_metrics = ['I-AUROC', 'I-AP', 'I-F1_max','P-AUROC', 'P-AP', 'P-F1_max', 'AUPRO']):
+    if len(gt_px.shape) == 4:
+        gt_px = gt_px.squeeze(1)
+    if len(pr_px.shape) == 4:
+        pr_px = pr_px.squeeze(1)
+        
+    score_min = min(pr_sp)
+    score_max = max(pr_sp)
+    anomap_min = pr_px.min()
+    anomap_max = pr_px.max()
+    
+    accum = EvalAccumulatorCuda(score_min, score_max, anomap_min, anomap_max, skip_pixel_aupro=False, nstrips=200)
+    accum.add_anomap_batch(torch.tensor(pr_px).cuda(non_blocking=True),
+                           torch.tensor(gt_px.astype(np.uint8)).cuda(non_blocking=True))
+    
+    # for i in range(torch.tensor(pr_px).size(0)):
+    #     accum.add_image(torch.tensor(pr_sp[i]), torch.tensor(gt_sp[i]))
+    
+    metrics = accum.summary()
+    metric_results = {}
+    for metric in use_metrics:
+        if metric.startswith('I-AUROC'):
+            auroc_sp = roc_auc_score(gt_sp, pr_sp)
+            metric_results[metric] = auroc_sp
+        elif metric.startswith('I-AP'):
+            ap_sp = average_precision_score(gt_sp, pr_sp)
+            metric_results[metric] = ap_sp
+        elif metric.startswith('I-F1_max'):
+            best_f1_score_sp = f1_score_max(gt_sp, pr_sp)
+            metric_results[metric] = best_f1_score_sp
+        elif metric.startswith('P-AUROC'):
+            metric_results[metric] = metrics['p_auroc']
+        elif metric.startswith('P-AP'):
+            metric_results[metric] = metrics['p_aupr']
+        elif metric.startswith('P-F1_max'):
+            best_f1_score_px = f1_score_max(gt_px.ravel(), pr_px.ravel())
+            metric_results[metric] = best_f1_score_px
+        elif metric.startswith('AUPRO'):
+            metric_results[metric] = metrics['p_aupro']
+    return list(metric_results.values())
+
 
 def get_logger(name, save_path=None, level='INFO'):
     logger = logging.getLogger(name)
@@ -213,16 +257,21 @@ def evaluation_batch(model, dataloader, device, _class_=None, max_ratio=0, resiz
         pr_list_px = torch.cat(pr_list_px, dim=0)[:, 0].cpu().numpy()
         gt_list_sp = torch.cat(gt_list_sp).flatten().cpu().numpy()
         pr_list_sp = torch.cat(pr_list_sp).flatten().cpu().numpy()
+        
+        # GPU acceleration
+        auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px = ader_evaluator(pr_list_px, pr_list_sp, gt_list_px, gt_list_sp)
+
+        # Only CPU
         # aupro_px = compute_pro(gt_list_px, pr_list_px)
-        gt_list_px, pr_list_px = gt_list_px.ravel(), pr_list_px.ravel()
-        auroc_px = roc_auc_score(gt_list_px, pr_list_px)
-        auroc_sp = roc_auc_score(gt_list_sp, pr_list_sp)
-        ap_px = average_precision_score(gt_list_px, pr_list_px)
-        ap_sp = average_precision_score(gt_list_sp, pr_list_sp)
-        f1_sp = f1_score_max(gt_list_sp, pr_list_sp)
-        f1_px = f1_score_max(gt_list_px, pr_list_px)
-    # return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px]
-    return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, 0.]
+        # gt_list_px, pr_list_px = gt_list_px.ravel(), pr_list_px.ravel()
+        # auroc_px = roc_auc_score(gt_list_px, pr_list_px)
+        # auroc_sp = roc_auc_score(gt_list_sp, pr_list_sp)
+        # ap_px = average_precision_score(gt_list_px, pr_list_px)
+        # ap_sp = average_precision_score(gt_list_sp, pr_list_sp)
+        # f1_sp = f1_score_max(gt_list_sp, pr_list_sp)
+        # f1_px = f1_score_max(gt_list_px, pr_list_px)
+
+    return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px]
 
 def evaluation_batch_vis_ZS(model, dataloader, device, _class_=None, max_ratio=0, resize_mask=None, save_root=None):
     model.eval()
@@ -270,20 +319,20 @@ def evaluation_batch_vis_ZS(model, dataloader, device, _class_=None, max_ratio=0
         gt_list_sp = torch.cat(gt_list_sp).flatten().cpu().numpy()
         pr_list_sp = torch.cat(pr_list_sp).flatten().cpu().numpy()
 
+         # GPU acceleration
+        auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px = ader_evaluator(pr_list_px, pr_list_sp, gt_list_px, gt_list_sp)
+
+        # Only CPU
         # aupro_px = compute_pro(gt_list_px, pr_list_px)
+        # gt_list_px, pr_list_px = gt_list_px.ravel(), pr_list_px.ravel()
+        # auroc_px = roc_auc_score(gt_list_px, pr_list_px)
+        # auroc_sp = roc_auc_score(gt_list_sp, pr_list_sp)
+        # ap_px = average_precision_score(gt_list_px, pr_list_px)
+        # ap_sp = average_precision_score(gt_list_sp, pr_list_sp)
+        # f1_sp = f1_score_max(gt_list_sp, pr_list_sp)
+        # f1_px = f1_score_max(gt_list_px, pr_list_px)
 
-        gt_list_px, pr_list_px = gt_list_px.ravel(), pr_list_px.ravel()
-
-        auroc_px = roc_auc_score(gt_list_px, pr_list_px)
-        auroc_sp = roc_auc_score(gt_list_sp, pr_list_sp)
-        ap_px = average_precision_score(gt_list_px, pr_list_px)
-        ap_sp = average_precision_score(gt_list_sp, pr_list_sp)
-
-        f1_sp = f1_score_max(gt_list_sp, pr_list_sp)
-        f1_px = f1_score_max(gt_list_px, pr_list_px)
-
-    # return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px]
-    return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, 0.]
+    return [auroc_sp, ap_sp, f1_sp, auroc_px, ap_px, f1_px, aupro_px]
 
 def compute_pro(masks: ndarray, amaps: ndarray, num_th: int = 200) -> None:
     """Compute the area under the curve of per-region overlaping (PRO) and 0 to 0.3 FPR
