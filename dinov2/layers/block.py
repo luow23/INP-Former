@@ -35,7 +35,7 @@ try:
 except ImportError:
     XFORMERS_AVAILABLE = False
 
-    warnings.warn("xFormers is not available (Block)")
+    # warnings.warn("xFormers is not available (Block)")
 
 
 class Block(nn.Module):

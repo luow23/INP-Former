@@ -30,7 +30,7 @@ try:
         raise ImportError
 except ImportError:
     XFORMERS_AVAILABLE = False
-    warnings.warn("xFormers is not available (Attention)")
+    # warnings.warn("xFormers is not available (Attention)")
 
 
 class Attention(nn.Module):
