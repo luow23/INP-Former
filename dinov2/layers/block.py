@@ -112,12 +112,16 @@ class Block(nn.Module):
     #     return x
 
     def forward(self, x, return_attention=False):
-        y, attn = self.attn(self.norm1(x))
+        if self.attn.__class__.__name__ == "MemEffAttention":
+            y = self.attn(self.norm1(x))
+
+        elif self.attn.__class__.__name__ == "Attention":
+            y,attn = self.attn(self.norm1(x))
 
         x = x + self.ls1(y)
         x = x + self.ls2(self.mlp(self.norm2(x)))
         if return_attention:
-            return x, attn
+            return x,attn
         else:
             return x
 
