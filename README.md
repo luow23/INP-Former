@@ -1,5 +1,6 @@
 # [CVPR2025] INP-Former 
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/exploring-intrinsic-normal-prototypes-within/multi-class-anomaly-detection-on-mvtec-ad)](https://paperswithcode.com/sota/multi-class-anomaly-detection-on-mvtec-ad?p=exploring-intrinsic-normal-prototypes-within)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/exploring-intrinsic-normal-prototypes-within/anomaly-detection-on-mvtec-ad)](https://paperswithcode.com/sota/anomaly-detection-on-mvtec-ad?p=exploring-intrinsic-normal-prototypes-within)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/exploring-intrinsic-normal-prototypes-within/anomaly-detection-on-visa)](https://paperswithcode.com/sota/anomaly-detection-on-visa?p=exploring-intrinsic-normal-prototypes-within)
 > The official PyTorch implementation of [Exploring Intrinsic Normal Prototypes within a Single Image for Universal Anomaly Detection](https://arxiv.org/pdf/2503.02424), CVPR 2025. This repo is created by Wei Luo.     
