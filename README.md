@@ -393,12 +393,13 @@ We sincerely appreciate [Dinomaly](https://github.com/guojiajeremy/Dinomaly) for
 ## Citation
 If our work is helpful for your research, please consider citing:
 ```
-@article{luo2025exploring,
-  title={Exploring Intrinsic Normal Prototypes within a Single Image for Universal Anomaly Detection},
-  author={Luo, Wei and Cao, Yunkang and Yao, Haiming and Zhang, Xiaotian and Lou, Jianan and Cheng, Yuqi and Shen, Weiming and Yu, Wenyong},
-  journal={arXiv preprint arXiv:2503.02424},
-  year={2025}
-}
+@InProceedings{Luo_2025_CVPR,
+    author    = {Luo, Wei and Cao, Yunkang and Yao, Haiming and Zhang, Xiaotian and Lou, Jianan and Cheng, Yuqi and Shen, Weiming and Yu, Wenyong},
+    title     = {Exploring Intrinsic Normal Prototypes within a Single Image for Universal Anomaly Detection},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {9974-9983}
 ```
 ## Contact
 If you have any questions about our work, please do not hesitate to contact [luow23@mails.tsinghua.edu.cn](mailto:luow23@mails.tsinghua.edu.cn).
