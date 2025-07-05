@@ -5,6 +5,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/exploring-intrinsic-normal-prototypes-within/anomaly-detection-on-visa)](https://paperswithcode.com/sota/anomaly-detection-on-visa?p=exploring-intrinsic-normal-prototypes-within)
 > - The official PyTorch implementation of [Exploring Intrinsic Normal Prototypes within a Single Image for Universal Anomaly Detection](https://arxiv.org/pdf/2503.02424), CVPR 2025. This repo is created by Wei Luo.     
 > - **The extended version (INP-Former++)** of this paper is available on [arXiv](https://arxiv.org/pdf/2506.03660). In this extended version, we further enhance the performance and extend the method to a semi-supervised setting, thereby advancing the boundaries of universal anomaly detection.
+> - INP-Former is built upon the pioneering work of [Dinomaly](https://github.com/guojiajeremy/Dinomaly), to which we express our sincere gratitude for their inspiring and foundational contributions.
 
 ## 🔔 Update
 > - Inspired by [ADer](https://github.com/zhangzjn/ADer), we improved our testing code to accelerate the computation of metrics during the testing process, particularly AUPRO.
