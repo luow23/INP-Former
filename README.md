@@ -401,6 +401,7 @@ If our work is helpful for your research, please consider citing:
     month     = {June},
     year      = {2025},
     pages     = {9974-9983}
+}
 ```
 ## Contact
 If you have any questions about our work, please do not hesitate to contact [luow23@mails.tsinghua.edu.cn](mailto:luow23@mails.tsinghua.edu.cn).
