@@ -1,7 +1,8 @@
 # [CVPR2025] INP-Former 
 
 ## 🔥 News
-- **[2026.05]** Official toolkit for the **7th CSIG Image and Graphics Technology Challenge** is now available. The toolkit includes data processing, training, evaluation, and submission scripts for convenient participation and reproducible benchmarking.
+- **[2026.05]** Official toolkit for the **7th CSIG Image and Graphics Technology Challenge** is now available.
+- The toolkit (competitor_toolkit) includes data processing, training, evaluation, and submission scripts for convenient participation and reproducible benchmarking.
 > - The official PyTorch implementation of [Exploring Intrinsic Normal Prototypes within a Single Image for Universal Anomaly Detection](https://arxiv.org/pdf/2503.02424), CVPR 2025. This repo is created by Wei Luo.     
 > - **The extended version (INP-Former++)** of this paper is available on [arXiv](https://arxiv.org/pdf/2506.03660). In this extended version, we further enhance the performance and extend the method to a semi-supervised setting, thereby advancing the boundaries of universal anomaly detection.
 > - INP-Former is built upon the pioneering work of [Dinomaly](https://github.com/guojiajeremy/Dinomaly), to which we express our sincere gratitude for their inspiring and foundational contributions.
